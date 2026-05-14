@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lab 3 - Starter Application Generation Template</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.7; color: #222; }
+    h1, h2, h3 { color: #1f4e79; }
+    pre { background: #f4f4f4; padding: 16px; border-radius: 8px; overflow-x: auto; white-space: pre-wrap; }
+    .section-box { background: #f9fbff; border-left: 4px solid #1f4e79; padding: 14px; margin: 14px 0; }
+    .homework-box { background: #fff9db; border-left: 4px solid #f39c12; padding: 14px; margin: 20px 0; }
+  </style>
+</head>
+<body>
+  <h1>Lab 3: Prompt-Led Application Development</h1>
+  <p>This lab introduces a reusable prompt template that helps users generate production-quality starter applications using AI. Each section of the template captures a specific application requirement.</p>
+
+  <h2>Starter Application Generation Template</h2>
+  <pre># STARTER APPLICATION GENERATION TEMPLATE
+
+Create a production-quality {application_type} web application.
+
+1. Business Objective
+2. Frontend Requirements
+3. Required Features
+4. Backend Requirements
+5. Database Requirements
+6. AI / GenAI Features
+7. Deployment Requirements
+8. Important</pre>
+
+  <h2>Header Explanation (Brief)</h2>
+
+  <div class="section-box">
+    <h3>1. Business Objective</h3>
+    <p>Defines the business problem and the primary user goal that the application is solving.</p>
+  
+    <h3>2. Frontend Requirements</h3>
+    <p>Specifies the UI framework, responsiveness, visual style, layout, and user experience expectations.</p>
+  
+    <h3>3. Required Features</h3>
+    <p>Lists all functional modules such as login, dashboard, search, orders, feedback, and reports.</p>
+  
+    <h3>4. Backend Requirements</h3>
+    <p>Defines the backend framework, project structure, logging, exception handling, and modular services.</p>
+  
+    <h3>5. Database Requirements</h3>
+    <p>Ensures executable SQL scripts are generated including database creation, tables, keys, indexes, and seed data.</p>
+  
+    <h3>6. AI / GenAI Features</h3>
+    <p>Defines vector search, summarization, chatbot, recommendations, and HeatWave GenAI use cases.</p>
+  
+    <h3>7. Deployment Requirements</h3>
+    <p>Specifies where the app will be deployed and ensures startup instructions are generated.</p>
+  
+    <h3>8. Important</h3>
+    <p>Emphasizes production-quality output, UI polish, deployment readiness, and reusable architecture.</p>
+  </div>
+
+  <h2>Example Prompt for Users to Run</h2>
+  <pre>Role: Senior Full-Stack Engineer.
+Task: Build a production-quality E-commerce Web Application for electronics using Python Flask and MySQL HeatWave.
+
+1. Required Web Pages
+Generate clean, modular HTML5/Bootstrap 5 templates for the following:
+
+Home/Landing Page: Includes a sticky navigation bar (Home, Orders, Feedback, Logout), a premium hero banner, and a prominent search bar.
+
+Product Grid: A responsive 3-column layout featuring elegant product cards. Each card must include a product image, title, price, star rating, a short description, and an "buy" button.
+
+Login Page: A visually polished, centered authentication form.
+
+Order History Page: A clean dashboard view listing previous purchases with status badges post login.
+
+Product details page: Complete product details, along with feedback.
+
+2. Database Requirements (MySQL HeatWave)
+Provide a complete, executable SQL script. The database is private, so the schema must be optimized for a direct connection via db_utils.
+
+products Table: Must include:
+
+product_description (TEXT) for human-readable details.
+
+description_vector (VECTOR) column to store embeddings for semantic search.
+
+image_url (VARCHAR) to store paths for product images.
+
+Standard fields: id, name, price, category, rating,quantity.
+
+Other Tables: users, orders, and feedback with all necessary Primary and Foreign Keys.
+
+Seed Data: Include a seed_data.sql section with 15+ realistic electronic products (laptops, phones, headphones) containing detailed descriptions and placeholder image URLs and 5+ examples for Orders and feedbacks.
+
+3. AI Feature: Semantic Vector Search
+Implement a native Vector Search capability using MySQL HeatWave:
+
+SQL Implementation: Use the VECTOR_DISTANCE function to calculate similarity between the user's query and the description_vector column.
+
+Results: The search must return the most relevant products based on meaning/context rather than just keyword matching.
+
+4. Technical Architecture
+Backend: Modular Python Flask structure using a db_utils.py file for database connection details with placeholders.
+
+Frontend: Use Vanilla JavaScript for API calls. Ensure the UI is responsive, uses soft shadows, rounded corners, and follows a premium "Apple/Amazon" aesthetic.
+</pre>
+
+  <h2>Next Steps: Implementation & Deployment</h2>
+
+  <div class="section-box">
+    <h3>Step 1: Sample SQL Statements for HeatWave GenAI Procedure</h3>
+    <p>Provide the sample queries below to the assistant. This ensures the AI understands the exact schema and parameter requirements for calling your specific HeatWave GenAI routines, allowing it to generate accurate code that integrates seamlessly with your database procedures.</p>
+    <p>To generate Embeddings: </p>
+    <pre>SELECT sys.ML_EMBED_ROW("What is artificial intelligence?", JSON_OBJECT("model_id", "all_minilm_l12_v2")) into @text_embedding;</pre>
+    <p>for semantic search</p>
+    <pre>SELECT DISTANCE(STRING_TO_VECTOR("[1.01231, 2.0123123, 3.0123123, 4.01231231]"), STRING_TO_VECTOR("[1, 2, 3, 4]"), "COSINE");</pre>
+    <h4>Refer <a href="https://dev.mysql.com/doc/heatwave/en/mys-hw-introduction.html">Mysql heatwave Doc</a></h4>
+    <p>Pro Tip
+      <ul>
+        <li><b>Contextual Awareness:</b> The AI doesn't know your custom procedure names (like ML_GENERATE) unless you define them.</li>
+        <li><b>Syntax Precision:</b> HeatWave GenAI routines use specific JSON objects for tasks; providing a sample ensures the AI doesn't "hallucinate" the wrong parameters</li>
+        <li><b>Zero-Error Integration:</b> It bridges the gap between the backend Python code and the SQL layer.</li>
+      </ul>
+    </p>
+  
+  </div>
+
+  <div class="section-box">
+    <h3>Step 2: Initialize Database in HeatWave SQL Editor</h3>
+    <p>Log in to the HeatWave SQL Editor and run the generated <b>Create Table</b> and <b>Seeded Data</b> queries. 
+    <br><br>
+    <b>Reason:</b> This step must be performed manually because the database is hosted on a <b>private network</b>. For security reasons, the AI code assistant cannot access your private database directly; it can only provide the scripts for you to execute within your secure environment.</p>
+  </div>
+
+  <div class="section-box">
+    <h3>Step 3: Modify Connection Details</h3>
+    <p>Update the database host configuration in your application code:</p>
+    <ul>
+      <li>Use <b>localhost</b> or <b>127.0.0.1</b> if you are performing local testing via an SSH tunnel.</li>
+      <li>Use the <b>Private IP</b> of the database when you are ready to deploy the application on a Virtual Machine within the same Cloud VCN.</li>
+    </ul>
+  </div>
+
+  <div class="section-box">
+    <h3>Step 4: Environment Setup & Execution for local machine testing</h3>
+    <p>Instruct your AI code assistant to do the following:</p>
+    <ol>
+      <li>Create a virtual environment (<code>venv</code>) and install required packages.</li>
+      <li>Run the main Python file.</li>
+      <li>Create the <b>SSH tunnel command</b> to connect your local environment to the private database: and share your private Key path</li>
+    </ol>
+    <p>OR run the below command your self in a new terminal</p>
+    <pre>ssh -i &lt;private_key&gt; -L 3306:&lt;db_private_ip&gt;:3306 opc@&lt;vm_public_ip&gt;</pre>
+  </div>
+
+  <h2>Important Note</h2>
+  <div class="section-box">
+    <p><b>Note:</b> This is a <b>sample prompt template and example structure</b> provided as a foundation for the lab.</p>
+    <p>It is <b>not a strict syntax</b> that must be followed word-for-word. Users are encouraged to <b>build on this foundation</b>, customize the headers, add domain-specific requirements, and expand the prompt based on their application use case.</p>
+    <p>The goal is to use this as a starting point for creating high-quality, production-ready applications through prompt-led development.</p>
+  </div>
+
+  <h2>Homework</h2>
+  <div class="homework-box">
+    <p><b>Task:</b> Enhance your generated application by implementing a <b>Feedback Summary</b> feature.</p>
+    <ul>
+        <li>Use the <b>HeatWave native GenAI routine</b> (<code>sys.ML_GENERATE</code>) to summarize user reviews or feedback.</li>
+        <li><b>Deploy:</b> Move your code to the Compute VM created in earlier labs.</li>
+        <li><b>Run:</b> Successfully run the application from the VM, ensuring it connects to your private HeatWave instance using the internal Private IP.</li>
+    </ul>
+  </div>
+
+</body>
+</html>

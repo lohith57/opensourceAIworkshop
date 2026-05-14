@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lab 2 - Database User Setup and Access Policy</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; color: #222; }
+    h1, h2, h3 { color: #1f4e79; }
+    pre { background: #f4f4f4; padding: 14px; border-radius: 8px; overflow-x: auto; }
+    .note { background: #fff8e1; padding: 12px; border-left: 4px solid #f0ad4e; margin: 16px 0; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+    th { background: #f0f6ff; }
+  </style>
+</head>
+<body>
+  <h1>Lab 2: Database Setup, User Creation & Access Policy</h1>
+  <p>In this lab, participants will connect to the MySQL HeatWave database, create an application database, provision a dedicated application user, and grant the required privileges including access to GenAI routines.</p>
+
+  <h2>Step 1: Login to Database</h2>
+  <p>Login to the MySQL HeatWave database using the <b>admin user credentials</b> in Visual Studio Code editor as you did in lab1.</p>
+
+  <p>Ensure you have administrative access before proceeding with database creation, user provisioning, and privilege grants.</p>
+
+  <h2>Step 2: Create Application Database</h2>
+  <pre>CREATE DATABASE mydb;</pre>
+
+  <p>Verify database creation:</p>
+  <pre>SHOW DATABASES;</pre>
+
+  <h2>Step 3: Create Application User</h2>
+  <p>Create a dedicated user for the application instead of using the admin account.</p>
+  <pre>CREATE USER 'username'@'host' IDENTIFIED BY 'StrongPassword';</pre>
+
+  <p>Recommended workshop example:</p>
+  <pre>CREATE USER 'app_user'@'%' IDENTIFIED BY 'Workshop@1234';</pre>
+
+  <div class="note">
+    Using <code>'%'</code> allows access from any host inside the permitted network. For production, restrict this to a specific host or subnet.
+  </div>
+
+  <h2>Step 4: Grant Database Access</h2>
+  <p>Grant required privileges for the application database:</p>
+  <pre>GRANT ALL PRIVILEGES
+ON mydb.*
+TO 'app_user'@'%';</pre>
+
+  <p>Apply the changes:</p>
+  <pre>FLUSH PRIVILEGES;</pre>
+
+  <h2>Step 5: Grant Access to GenAI Routines</h2>
+  <p>Provide access to call GenAI / HeatWave system routines:</p>
+  <pre>GRANT EXECUTE ON sys.* TO 'app_user'@'%';</pre>
+
+  <p>Apply the changes:</p>
+  <pre>FLUSH PRIVILEGES;</pre>
+
+  <h2>Step 6: Validate User Access</h2>
+  <p>Create a <b>new database connection in Visual Studio Code</b> using the newly created application user credentials.</p>
+
+  <table>
+    <tr><th>Field</th><th>Value</th></tr>
+    <tr><td>Host</td><td>&lt;DB_PRIVATE_IP&gt;</td></tr>
+    <tr><td>Port</td><td>3306</td></tr>
+    <tr><td>Username</td><td>app_user</td></tr>
+    <tr><td>Password</td><td>The password set during user creation</td></tr>
+    <tr><td>Database</td><td>mydb</td></tr>
+  </table>
+
+  <p>Once connected, open a new SQL query window and run the following command to validate access:</p>
+  <pre>SHOW DATABASES;</pre>
+
+  <p>Expected result: the <code>mydb</code> database should be visible in the output.</p>
+
+  <p>You may also run:</p>
+  <pre>USE mydb;
+SHOW TABLES;</pre>
+
+
+  <h2>Step 7: Enable HeatWave Access to OCI GenAI Services</h2>
+  <p>
+    To enable the DB system to access OCI services, perform the following steps in OCI.
+  </p>
+
+  <h3>Create / Update Dynamic Group</h3>
+  <p>
+    Click on Hamburger Menu and select <b>Identity & Security → Domains -> select root compartment</b>.
+    <img src="https://objectstorage.us-chicago-1.oraclecloud.com/p/En9csAT8IGtO_1AYWENC6ULPfZmX5qWWvuoL6DmTYze8RzLntkb49pXObpQREmdS/n/sehubjapaciaas/b/heatwave_genai/o/Lab_Images/DomainImage2.png" alt="Select Domain" style="max-width:100%; border-radius:8px; margin:16px 0;" />
+    <img src="https://objectstorage.us-chicago-1.oraclecloud.com/p/WIqdWt9I9GFYI6vykqf2yI61bHLEGYOjcvpOCmrqh7Eit2i9ioripVxGxyT6646Y/n/sehubjapaciaas/b/heatwave_genai/o/Lab_Images/DomainsImage.png" alt="Navigate to Domains" style="max-width:100%; border-radius:8px; margin:16px 0;" />
+   
+  </p>
+  <p>
+    Create a new dynamic group or update an existing one with the following matching rule:
+    <img src="https://objectstorage.us-chicago-1.oraclecloud.com/p/LGHZ-3mUUxMELD0oaNqxm2RPTuF8vuMh1VJPGOI6T388kQfXFshl09vyUBEhwGxT/n/sehubjapaciaas/b/heatwave_genai/o/Lab_Images/DGImage.png" alt="Create Dynamic Group Screenshot" style="max-width:100%; border-radius:8px; margin:16px 0;" />
+  </p>
+
+  <pre>ALL{resource.type = 'mysqldbsystem', resource.compartment.id = 'ocid1.compartment.oc1..AlphanumericString'}</pre>
+
+  <div class="note">
+    Replace <code>ocid1.compartment.oc1..AlphanumericString</code> with the
+    <b>Compartment ID of the DB system</b>. 
+    Compartment ID is available under <b>Identity & Security - > Compartments -> select your compartment and copy the OCID</b>
+  </div>
+
+  <h3>Add Required Policies</h3>
+  <p>
+    Navigate to <b>Identity & Security → Policies</b> and add the following policies
+    <img src="https://objectstorage.us-chicago-1.oraclecloud.com/p/L7q74xV9N50BXFDadwNrDjlTdMzj7ws3oHzAs11356jOEAs65wmrc8U1-L-RjYst/n/sehubjapaciaas/b/heatwave_genai/o/Lab_Images/Policies.png" alt="Navigate to Policies" style="max-width:100%; border-radius:8px; margin:16px 0;" />
+    <img src="https://objectstorage.us-chicago-1.oraclecloud.com/p/o2cpKqLUSc7kUvM7srmr82pQiF7Wxz1r6JG8NwGDsFadHWbWJOXYGTstUPjzGuLV/n/sehubjapaciaas/b/heatwave_genai/o/Lab_Images/Policies2.png" alt="Create Policies" style="max-width:100%; border-radius:8px; margin:16px 0;" />
+  </p>
+  <p> add the following policies for the dynamic group: </p>
+  <pre>allow dynamic-group IdentityDomainName/GroupName to use generative-ai-chat in compartment CompartmentName
+allow dynamic-group IdentityDomainName/GroupName to use generative-ai-text-embedding in compartment CompartmentName
+allow dynamic-group IdentityDomainName/GroupName to inspect generative-ai-model in compartment CompartmentName</pre>
+
+  <p>Replace the following values:</p>
+
+  <table>
+    <tr><th>Placeholder</th><th>Description</th></tr>
+    <tr><td>IdentityDomainName</td><td>The identity domain name</td></tr>
+    <tr><td>GroupName</td><td>The dynamic group name</td></tr>
+    <tr><td>CompartmentName</td><td>The compartment where GenAI access is required</td></tr>
+  </table>
+
+  <div class="note">
+    <b>Note:</b> If the dynamic group belongs to the default identity domain,
+    you can omit specifying the identity domain name.
+  </div>
+
+  
+
+  <h2>Expected Outcome</h2>
+  <table>
+    <tr><th>Validation Item</th><th>Expected Result</th></tr>
+    <tr><td>Database Created</td><td>mydb visible in SHOW DATABASES</td></tr>
+    <tr><td>User Created</td><td>app_user login successful</td></tr>
+    <tr><td>DB Access</td><td>Can use mydb schema</td></tr>
+    <tr><td>GenAI Access</td><td>EXECUTE privilege on sys routines</td></tr>
+  </table>
+</body>
+</html>

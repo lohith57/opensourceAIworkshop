@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lab1: Provision the required resources for the lab</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.7; color: #222; }
+    h1, h2, h3 { color: #1f4e79; }
+    .download-box, .step-box, .image-box, .note { border-radius: 10px; padding: 16px; margin: 18px 0; }
+    .download-box { background: #f4f8ff; border-left: 5px solid #1f4e79; }
+    .step-box { background: #fafafa; border: 1px solid #ddd; }
+    .image-box { background: #f8f8f8; border: 2px dashed #bbb; text-align: center; color: #666; }
+    .note { background: #fff8e1; border-left: 5px solid #f0ad4e; }
+    .btn { display: inline-block; padding: 12px 20px; background: #1f4e79; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; }
+    .btn:hover { opacity: 0.9; }
+    code, pre { background: #f4f4f4; padding: 8px; border-radius: 6px; }
+    pre { overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+    th { background: #f0f6ff; }
+    .note { background: #fff8e1; padding: 12px; border-left: 4px solid #f0ad4e; }
+  
+  </style>
+</head>
+<body>
+  <h1>Lab1 : How to Execute the TF Infra Script in OCI UI</h1>
+
+  <div class="download-box">
+    <h2>Step 1: Download the Resource File</h2>
+    <p>Click the button below to download the ZIP file required for this lab.</p>
+    <a href="https://objectstorage.us-chicago-1.oraclecloud.com/p/3rSJn8VsfglY8wWlj0Q_bxwQZRNvZOnAoURiGMzV3AbbTa0aUj8ZyFsvh_X4Vmzq/n/sehubjapaciaas/b/heatwave_genai/o/Version_3_AI_Demo_infrastructure.zip" class="btn">Download ZIP File</a>
+    <p><i>Note: Replace <b>YOUR_DOWNLOAD_URL_PLACEHOLDER</b> with the actual file URL later.</i></p>
+  </div>
+
+  <div class="step-box">
+    <h2>Step 2: Login to OCI Console and Resource Manager</h2>
+    <p>Login to OCI console and Resource Manager.</p>
+    <div class="image">
+      <img src="https://objectstorage.us-chicago-1.oraclecloud.com/p/iGC1Ppkls8CeTa1rAy8fRg93R-4yPBTBHGySqld9lBiNmxYp0YC6yrrMpTeDSvYj/n/sehubjapaciaas/b/heatwave_genai/o/Lab_Images/Lab1Image1.png"></div>
+  </div>
+
+  <div class="step-box">
+    <h2>Step 3: Go to Stack and Create Stack</h2>
+    <p>Go to stack and create stack.</p>
+    <div class="image">
+      <img src="https://objectstorage.us-chicago-1.oraclecloud.com/p/iGC1Ppkls8CeTa1rAy8fRg93R-4yPBTBHGySqld9lBiNmxYp0YC6yrrMpTeDSvYj/n/sehubjapaciaas/b/heatwave_genai/o/Lab_Images/Lab1Image2.png">
+    </div>
+  </div>
+
+  <div class="step-box">
+    <h2>Step 4: Browse the ZIP File</h2>
+    <p>Browse the Zip file and click Next.</p>
+    <div class="image">
+      <img src="https://objectstorage.us-chicago-1.oraclecloud.com/p/iGC1Ppkls8CeTa1rAy8fRg93R-4yPBTBHGySqld9lBiNmxYp0YC6yrrMpTeDSvYj/n/sehubjapaciaas/b/heatwave_genai/o/Lab_Images/Lab1Image3.png">
+    </div>
+  </div>
+
+  <div class="step-box">
+    <h2>Step 5: Fill the Details</h2>
+    <p>Fill up the details (Compartment id and mysql_admin_password. Rest of the details will be auto filled from the script). Click Next.</p>
+    <p>Please note- Compartment ID will be populated with default ocid. Change the ocid in this page. Values which will be populated are default values which is mentioned in the script and can be changed in this page as well.</p>
+    <div class="image">
+      <img src="https://objectstorage.us-chicago-1.oraclecloud.com/p/iGC1Ppkls8CeTa1rAy8fRg93R-4yPBTBHGySqld9lBiNmxYp0YC6yrrMpTeDSvYj/n/sehubjapaciaas/b/heatwave_genai/o/Lab_Images/Lab1Image4.png">
+    </div>
+    <div class="image">
+      <img src="https://objectstorage.us-chicago-1.oraclecloud.com/p/iGC1Ppkls8CeTa1rAy8fRg93R-4yPBTBHGySqld9lBiNmxYp0YC6yrrMpTeDSvYj/n/sehubjapaciaas/b/heatwave_genai/o/Lab_Images/Lab1Image5.png">
+    </div>
+  </div>
+
+  <div class="step-box">
+    <h2>Step 6: Save Changes</h2>
+    <p>Click Save changes.</p>
+    <div class="image">
+      <img src="https://objectstorage.us-chicago-1.oraclecloud.com/p/iGC1Ppkls8CeTa1rAy8fRg93R-4yPBTBHGySqld9lBiNmxYp0YC6yrrMpTeDSvYj/n/sehubjapaciaas/b/heatwave_genai/o/Lab_Images/Lab1Image6.png">
+    </div>
+  </div>
+
+  <div class="step-box">
+    <h2>Step 7: Plan</h2>
+    <p>Click Plan.</p>
+    <div class="image">
+      <img src="https://objectstorage.us-chicago-1.oraclecloud.com/p/iGC1Ppkls8CeTa1rAy8fRg93R-4yPBTBHGySqld9lBiNmxYp0YC6yrrMpTeDSvYj/n/sehubjapaciaas/b/heatwave_genai/o/Lab_Images/Lab1Image7.png">
+    </div>
+    <div class="image">
+      <img src="https://objectstorage.us-chicago-1.oraclecloud.com/p/iGC1Ppkls8CeTa1rAy8fRg93R-4yPBTBHGySqld9lBiNmxYp0YC6yrrMpTeDSvYj/n/sehubjapaciaas/b/heatwave_genai/o/Lab_Images/Lab1Image8.png">
+    </div>
+  </div>
+
+  <div class="step-box">
+    <h2>Step 8: Apply</h2>
+    <p>After plan succeeds, click Apply.</p>
+    <div class="image">
+      <img src="https://objectstorage.us-chicago-1.oraclecloud.com/p/iGC1Ppkls8CeTa1rAy8fRg93R-4yPBTBHGySqld9lBiNmxYp0YC6yrrMpTeDSvYj/n/sehubjapaciaas/b/heatwave_genai/o/Lab_Images/Lab1Image9.png">
+    </div>
+  </div>
+
+  <div class="step-box">
+    <h2>Step 9: Validate Infrastructure</h2>
+    <p>After Apply succeeds, you can see the infrastructure implemented in that compartment.</p>
+  </div>
+
+  <div class="note">
+    <p>Please note- The public and private key to access the instance has been kept in the delivered zip. The compute will be created with the public key, use the pair private key to access the public instance.</p>
+    <p>If you wish to change the version of sql and heatwave, same can be done from TF script. terraform.tfvars file.</p>
+    <div class="image">
+      <img src="https://objectstorage.us-chicago-1.oraclecloud.com/p/iGC1Ppkls8CeTa1rAy8fRg93R-4yPBTBHGySqld9lBiNmxYp0YC6yrrMpTeDSvYj/n/sehubjapaciaas/b/heatwave_genai/o/Lab_Images/Lab1Image10.png">
+    </div>
+  </div>
+
+<h1>OCI Workshop Validation Guide</h1>
+  <p>This document provides detailed validation steps after creating the VCN, Compute VM, and MySQL HeatWave DB System.</p>
+
+  <h2>1. Validate Compute VM Access (SSH)</h2>
+  <p>Reference: Oracle documentation – Connecting to a Linux Instance</p>
+
+  <h3>Step 1: Get Public IP Address</h3>
+  <ol>
+    <li>Login to OCI Console</li>
+    <li>Navigate to <b>Compute → Instances</b></li>
+    <li>Select your VM instance</li>
+    <li>Copy the <b>Public access IP address</b></li>
+  </ol>
+
+  <h3>Step 2: Locate SSH Private Key</h3>
+  <p>Unzip the file you used for resource creation<b>(AI_Demo_infrastructure)</b>, Locate the <code>.key</code> file to authenticate to the VM.</p>
+
+  <h3>Step 3: Set Key Permissions (macOS / Linux)</h3>
+  <pre>chmod 400 ~/Downloads/workshop-key.key</pre>
+
+  <h3>Step 4: Connect to VM</h3>
+  <pre>ssh -i ~/Downloads/workshop-key.key opc@&lt;PUBLIC_IP&gt;</pre>
+
+  <p>Example:</p>
+  <pre>ssh -i ~/Downloads/workshop-key.key opc@129.154.xx.xx</pre>
+
+  <h3>Step 5: Verify Connection</h3>
+  <p>If successful, you should see:</p>
+  <pre>[opc@workshop-vm ~]$</pre>
+
+  <div class="note">
+    Default username for Oracle Linux is <b>opc</b>.
+  </div>
+
+  <h2>2. Validate HeatWave DB Connectivity from VM</h2>
+
+  <h3>Step 1: Get Private DB IP</h3>
+  <ol>
+    <li>Go to <b>Databases → MySQL HeatWave → DB Systems</b></li>
+    <li>Select your DB System</li>
+    <li>Copy the <b>Private IP </b></li>
+  </ol>
+
+  <p>If successful, database connectivity is working.</p>
+
+  <h2>3. Connect to DB System via Visual Studio Code (Recommended Approach)</h2>
+
+  <p>Since the DB is in a private subnet, connect through the VM using VS Code Remote SSH.</p>
+
+  <h3>Step 1: Install Extensions</h3>
+  <ul>
+    <li>Search for <b>MySQL Shell Extension</b> and click on Install</li>
+  </ul>
+
+  <h3>Step 2: Connect VS Code to Heatwave</h3>
+  <ol>
+    <li>Open VS Code</li>
+    <li>Select the <b>Mysql shell extension</b></li>
+    <li>Click +New Connection</b></li>
+    <li>Enter:</li>
+  </ol>
+  <table>
+    <tr><th>Field</th><th>Value</th></tr>
+    <tr><td>Host</td><td>Private DB IP</td></tr>
+    <tr><td>Port</td><td>3306</td></tr>
+    <tr><td>Username</td><td>admin</td></tr>
+    <tr><td>Password</td><td>Your DB password</td></tr>
+  </table>
+  <h4>Select SSH tunnel</h4>
+  <ol>
+    <li>enter username: opc@Public IP</li>
+    <li>add the private key path</li>
+  </ol>
+
+  <h3>Step 3: Test Query from VS Code</h3>
+  <pre>SELECT NOW();</pre>
+
+  <p>You should receive current DB server timestamp.</p>
+
+  <h2>4. Final Validation Checklist</h2>
+  <ul>
+    <li>✔ VM accessible via SSH</li>
+    <li>✔ VS Code connected to HeatWave DB</li>
+  </ul>
+
+<section>
+    <h1>Cline Installation in VS Code</h1>
+
+    <p>
+        In this section, users will configure access to OCI Generative AI
+        and connect it with <b>Cline</b> inside Visual Studio Code.
+    </p>
+
+    <h2>Step 1: Create IAM Policy for Generative AI Access</h2>
+    <p>
+        Navigate to <b>Identity &amp; Security → Policies</b> in the OCI Console.
+    </p>
+    <p>Click <b>Add Policy</b> and create the following policy:</p>
+
+    <pre>Allow any-user to use generative-ai-family in compartment poc-compartment</pre>
+
+    <p>This policy provides users access to the OCI Generative AI service.</p>
+    <div class="note">
+      for details on IAM policy refer <a href="https://docs.oracle.com/en-us/iaas/Content/Identity/policieshow/Policy_Basics.htm">this doc</a> .
+    </div>
+    <h2>Step 2: Create OCI Generative AI API Key</h2>
+    <p>Navigate to:</p>
+
+    <pre>Analytics & AI → Generative AI</pre>
+
+    <p>Select:</p>
+    <ul>
+        <li><b>Compartment:</b> your workshop compartment</li>
+        <li><b>Region:</b> Chicago</li>
+    </ul>
+
+    <p>From the left-hand menu, select <b>API Keys</b>.</p>
+
+    <p>On the API Keys list page, click <b>Create API Key</b>.</p>
+
+    <ol>
+        <li>Enter a <b>Name</b> for the API key (required)</li>
+        <li>(Optional) Enter a <b>Description</b></li>
+    </ol>
+
+    <h2>Step 3: Install Cline in Visual Studio Code</h2>
+    <p>Open <b>Visual Studio Code</b>.</p>
+    <p>Navigate to:</p>
+
+    <pre>Extensions</pre>
+
+    <p>Search for:</p>
+    <pre>Cline</pre>
+
+    <p></p>Click <b>Install</b>.</p>
+
+    <h2>Step 4: Configure Cline Settings</h2>
+    <p>Open the <b>Cline settings</b>.</p>
+
+    <p>Configure the following:</p>
+
+    <table>
+        <tr>
+            <th>Field</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>Provider</td>
+            <td>Open AI Compatible</td>
+        </tr>
+        <tr>
+            <td>Base URL</td>
+            <td>
+                https://inference.generativeai.us-chicago-1.oci.oraclecloud.com
+            </td>
+        </tr>
+        <tr>
+            <td>Model ID</td>
+            <td>
+                ocid1.generativeaimodel.oc1.us-chicago-1.amaaaaaask7dceya3bsfz4ogiuv3yc7gcnlry7gi3zzx6tnikg6jltqszm2q
+            </td>
+        </tr>
+    </table>
+
+    <h2>Expected Outcome</h2>
+    <p>
+        Users should now be able to use <b>Cline with OCI Generative AI</b>
+        for prompt-led application development.
+    </p>
+</section>
+
+</body>
+</html>
